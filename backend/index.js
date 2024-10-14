@@ -26,7 +26,7 @@ app.get("/product", (req, res)=> {
     })
 });
 app.post("/product", (req, res) => {
-    const q = "INSERT INTO product(`productname`, `size`, `price`) VALUES (?)";
+    const q = "INSERT INTO product(`ProductID`, `ProductName`, `UPC`, `Size`, `Price`, `ProductTypeID`, ``) VALUES (?)";
   
     const values = [
       req.body.productname,
