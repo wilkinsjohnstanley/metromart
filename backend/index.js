@@ -29,9 +29,13 @@ app.post("/product", (req, res) => {
     const q = "INSERT INTO product(`ProductID`, `ProductName`, `UPC`, `Size`, `Price`, `ProductTypeID`, `BrandID`) VALUES (?)";
   
     const values = [
-      req.body.productname,
-      req.body.size,
-      req.body.price,
+      req.body.ProductId,
+      req.body.ProductName,
+      req.body.UPC,
+      req.body.Size,
+      req.body.Price,
+      req.body.ProductTypeID,
+      req.body.BrandID,
      
     ];
     dbms.query(q, [values], (err, data) => {

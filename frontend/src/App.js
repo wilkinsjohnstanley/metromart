@@ -6,7 +6,7 @@ import{
 import Product from "./pages/Product"
 import Add from "./pages/Add"
 import Update from "./pages/Update"
-
+import "./style.css"
 
 function App() {
   return (

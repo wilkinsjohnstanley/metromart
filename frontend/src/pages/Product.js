@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
@@ -11,9 +12,9 @@ const Product = () => {
         const fetchAllProducts = async()=>{
             try {
                 const res = await axios.get("http://localhost:8800/product")
-                console.log(res)
+                setProduct(res.data);
             } catch (err) {
-                console.log(err)
+                console.log(err);
             }
         }
         //call the fetch function
@@ -22,7 +23,19 @@ const Product = () => {
     },[])
   return (
     <div>
-      Insert Products Here
+
+        <h1>MetroMart</h1>
+
+        <div className='products'>
+            {products.map(product=>(
+                <div className='product' key={product.ProductID}>
+                    <h2>{product.ProductName}</h2>
+                    <h2>{product.Size}</h2>
+                    <span>{product.Price}</span>
+                </div>
+            ))}
+        </div>
+        <button><Link to ="add">Add A New Product</Link></button>
     </div>
   )
 }
