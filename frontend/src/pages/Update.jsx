@@ -14,6 +14,7 @@ const Update = () => {
         ProductTypeID:null,
         BrandID:null,
     });
+    const [error,setError] = useState(false)
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -26,11 +27,11 @@ const Update = () => {
     };
 console.log(product)
 
-    const handleClick = async e => {
+    const handleClick = async (e) => {
         e.preventDefault() 
         try {
-            await axios.put("http://localhost:8800/product/"+id, product)
-            navigate("/")
+            await axios.put(`http://localhost:8800/product/${id}`, product);
+            navigate("/");
         } catch (err) {
             console.log(err)
         }
@@ -52,6 +53,8 @@ console.log(product)
 
         <input type='number' placeholder='BrandID (number)' onChange={handleChange} name="BrandID"></input>
     <button className="formButton" onClick={handleClick}>Update</button>
+    {error && "Something went wrong!"}
+    <Link to="/">See all books</Link>
     </div>
   )
 }
