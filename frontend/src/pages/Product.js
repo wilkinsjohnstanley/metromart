@@ -24,7 +24,7 @@ const Product = () => {
 
     const handleDelete = async(ProductID)=>{
         try {
-            await axios.delete(`http://localhost:8800/product/"${ProductID}`)
+            await axios.delete(`http://localhost:8800/product/${ProductID}`)
             window.location.reload();
         } catch (err) {
             console.log(err)

@@ -29,7 +29,7 @@ app.post("/product", (req, res) => {
     const q = "INSERT INTO product(`ProductID`, `ProductName`, `UPC`, `Size`, `Price`, `ProductTypeID`, `BrandID`) VALUES (?)";
   
     const values = [
-      req.body.ProductId,
+      req.body.ProductID,
       req.body.ProductName,
       req.body.UPC,
       req.body.Size,
@@ -44,14 +44,14 @@ app.post("/product", (req, res) => {
       });
     });   
 
-app.delete("/product:ProductID", (req, res)=>{
-    const bookId = req.params.ProductId;
-    const q = "DELETE FROM product WHERE ID = ?"
-    dbms.query(q,[ProductId], (err,data)=>{
-        if (err) return res.send(err);
+app.delete("/product/:ProductID", (req, res)=>{
+    const id = req.params.ProductID;
+    const q = "DELETE FROM PRODUCT WHERE ProductID = ?"
+    dbms.query(q,[id], (err,data)=>{
+        if (err) return res.json(err);
         return res.json("Product has been deleted successfully.");
-    })
-})
+    });
+});
 
 app.listen(8800, ()=>{
     console.log("Backend connection established.")
