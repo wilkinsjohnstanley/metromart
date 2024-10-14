@@ -40,9 +40,18 @@ app.post("/product", (req, res) => {
     ];
     dbms.query(q, [values], (err, data) => {
         if (err) return res.send(err);
-        return res.json(data);
+        return res.json("Product has been added successfully.");
       });
     });   
+
+app.delete("/product:ProductID", (req, res)=>{
+    const bookId = req.params.ProductId;
+    const q = "DELETE FROM product WHERE ID = ?"
+    dbms.query(q,[ProductId], (err,data)=>{
+        if (err) return res.send(err);
+        return res.json("Product has been deleted successfully.");
+    })
+})
 
 app.listen(8800, ()=>{
     console.log("Backend connection established.")

@@ -21,6 +21,16 @@ const Product = () => {
         fetchAllProducts()
         //empty brackets/empty array means it will run just once
     },[])
+
+    const handleDelete = async(ProductID)=>{
+        try {
+            await axios.delete(`http://localhost:8800/product/"${ProductID}`)
+            window.location.reload();
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
   return (
     <div>
 
@@ -29,9 +39,12 @@ const Product = () => {
         <div className='products'>
             {products.map(product=>(
                 <div className='product' key={product.ProductID}>
-                    <h2>{product.ProductName}</h2>
-                    <h2>{product.Size}</h2>
+                    <h4>{product.ProductName}</h4>
+                    <h5>{product.Size}</h5>
                     <span>{product.Price}</span>
+                    <button className='delete' onClick={()=>handleDelete(product.ProductID)}>Delete</button>
+                    <button className='update'>Update</button>
+
                 </div>
             ))}
         </div>
