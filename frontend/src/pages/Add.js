@@ -14,7 +14,7 @@ const Add = () => {
         ProductTypeID:null,
         BrandID:null,
     });
-
+    const [error,setError] = useState(false)
     const navigate = useNavigate()
 
 
@@ -31,24 +31,26 @@ console.log(product)
         } catch (err) {
             console.log(err)
         }
-    }
+    };
 
   return (
     <div className='form'>
         <h1>Add A New Product</h1>
-        <input type='number' placeholder='ProductID (number)' onChange={handleChange} name="ProductID"></input>
-        <input type='text' placeholder='ProductName (text)'onChange={handleChange} name="ProductName"></input>
+        <input type='number' placeholder='ProductID (number)' name="ProductID" onChange={handleChange} ></input>
+        <input type='text' placeholder='ProductName (text)' name="ProductName" onChange={handleChange} ></input>
 
-        <input type='text' placeholder='UPC (number)'onChange={handleChange} name="UPC"></input>
+        <input type='text' placeholder='UPC (number)' name="UPC" onChange={handleChange} ></input>
 
-        <input type='text' placeholder='Size (text)' onChange={handleChange} name="Size"></input>
+        <input type='text' placeholder='Size (text)' name="Size" onChange={handleChange} ></input>
 
-        <input type='number' placeholder='Price (number)' onChange={handleChange} name="Price"></input>
+        <input type='number' placeholder='Price (number)' name="Price" onChange={handleChange} ></input>
 
-        <input type='number' placeholder='ProductTypeID (number)' onChange={handleChange} name="ProductTypeID"></input>
+        <input type='number' placeholder='ProductTypeID (number)' name="ProductTypeID" onChange={handleChange} ></input>
 
-        <input type='number' placeholder='BrandID (number)' onChange={handleChange} name="BrandID"></input>
+        <input type='number' placeholder='BrandID (number)' name="BrandID" onChange={handleChange} ></input>
     <button onClick={handleClick}>Add</button>
+    {error && "Something went wrong!"}
+    <Link to="/"> See all books</Link>
     </div>
   )
 }

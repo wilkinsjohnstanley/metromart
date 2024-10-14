@@ -41,14 +41,14 @@ const Product = () => {
                 <div className='product' key={product.ProductID}>
                     <h4>{product.ProductName}</h4>
                     <h5>{product.Size}</h5>
-                    <span>{product.Price}</span>
+                    <span>${product.Price}</span>
                     <button className='delete' onClick={()=>handleDelete(product.ProductID)}>Delete</button>
-                    <button className='update'>Update</button>
+                    <button className='update'><Link to={`/update/${product.ProductID}`}>Update</Link></button>
 
                 </div>
             ))}
         </div>
-        <button><Link to ="add">Add A New Product</Link></button>
+        <button className='button'><Link to ="/add">Add A New Product</Link></button>
     </div>
   )
 }

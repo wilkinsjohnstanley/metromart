@@ -53,6 +53,27 @@ app.delete("/product/:ProductID", (req, res)=>{
     });
 });
 
+app.put("/product/:ProductID", (req, res)=>{
+    const id = req.params.ProductID;
+    const q = "UPDATE PRODUCT SET `ProductID` = ?, `ProductName` = ?, `UPC` = ?, `Size` = ?, `Price` = ?, `ProductTypeID` = ?, `BrandID` = ? WHERE ProductID = ?"
+    
+    const values = [
+        req.body.ProductID,
+        req.body.ProductName,
+        req.body.UPC,
+        req.body.Size,
+        req.body.Price,
+        req.body.ProductTypeID,
+        req.body.BrandID,
+       
+      ];
+    
+    dbms.query(q,[...values, id], (err,data)=>{
+        if (err) return res.json(err);
+        return res.json("Product has been updated successfully.");
+    });
+});
+
 app.listen(8800, ()=>{
     console.log("Backend connection established.")
 })
