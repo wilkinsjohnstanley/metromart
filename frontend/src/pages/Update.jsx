@@ -8,7 +8,7 @@ const Update = () => {
     const [product, setProduct] = useState({
         ProductID:null,
         ProductName:"",
-        UPC:"",
+        UPC:null,
         Size:"",
         Price:null,
         ProductTypeID:null,
@@ -54,7 +54,7 @@ console.log(product)
         <input type='number' placeholder='BrandID (number)' onChange={handleChange} name="BrandID"></input>
     <button className="formButton" onClick={handleClick}>Update</button>
     {error && "Something went wrong!"}
-    <Link to="/">See all books</Link>
+    <Link to="/">See all products</Link>
     </div>
   )
 }
