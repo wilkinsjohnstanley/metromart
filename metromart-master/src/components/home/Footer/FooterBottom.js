@@ -10,9 +10,9 @@ const FooterBottom = () => {
             <AiOutlineCopyright />
           </span>
           Copyright 2022 | MetroMart shopping | All Rights Reserved |
-          <a href="https://reactbd.com/" target="_blank" rel="noreferrer">
+          <a href="https://github.com/wilkinsjohnstanley/metromart" target="_blank" rel="noreferrer">
             <span className="ml-1 font-medium group-hover:text-primeColor">
-              Powered by ReactBD.com
+              Powered by MetroMart
             </span>
           </a>
         </p>

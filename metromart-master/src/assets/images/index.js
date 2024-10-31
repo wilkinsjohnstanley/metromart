@@ -20,7 +20,7 @@ import bestSellerThree from "./products/bestSeller/bestSellerThree.webp";
 import bestSellerFour from "./products/bestSeller/bestSellerFour.webp";
 
 // Special Offers
-import spfOne from "./products/specialOffer/spfOne.webp";
+import metromart_t_shirt from "./products/specialOffer/metromart_t_shirt.png";
 import spfTwo from "./products/specialOffer/spfTwo.webp";
 import spfThree from "./products/specialOffer/spfThree.webp";
 import spfFour from "./products/specialOffer/spfFour.webp";
@@ -54,7 +54,7 @@ export {
   bestSellerFour,
 
   // Sprcial Offers
-  spfOne,
+  metromart_t_shirt,
   spfTwo,
   spfThree,
   spfFour,

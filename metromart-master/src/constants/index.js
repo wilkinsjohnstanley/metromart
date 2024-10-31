@@ -1,5 +1,5 @@
 import {
-  spfOne,
+  metromart_t_shirt,
   spfTwo,
   spfThree,
   spfFour,
@@ -38,7 +38,7 @@ export const navBarList = [
   {
     _id: 1005,
     title: "Journal",
-    link: "/journal",
+    link: "/Journal",
   },
 ];
 // =================== NavBarList End here ======================
@@ -46,8 +46,8 @@ export const navBarList = [
 export const SplOfferData = [
   {
     _id: "201",
-    img: spfOne,
-    productName: "Cap for Boys",
+    img: metromart_t_shirt,
+    productName: "MetroMart T-Shirt",
     price: "35.00",
     color: "Blank and White",
     badge: true,
@@ -88,8 +88,8 @@ export const SplOfferData = [
 export const paginationItems = [
   {
     _id: 1001,
-    img: spfOne,
-    productName: "Cap for Boys",
+    img: metromart_t_shirt,
+    productName: "MetroMart T-Shirt",
     price: "35.00",
     color: "Blank and White",
     badge: true,
@@ -296,8 +296,8 @@ export const paginationItems = [
   },
   {
     _id: 1024,
-    img: spfOne,
-    productName: "Cap for Boys",
+    img: metromart_t_shirt,
+    productName: "MetroMart T-Shirt",
     price: "35.00",
     color: "Blank and White",
     badge: true,
@@ -494,8 +494,8 @@ export const paginationItems = [
   },
   {
     _id: 1046,
-    img: spfOne,
-    productName: "Cap for Boys",
+    img: metromart_t_shirt,
+    productName: "MetroMart T-Shirt",
     price: "35.00",
     color: "Blank and White",
     badge: true,
