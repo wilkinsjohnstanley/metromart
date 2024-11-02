@@ -11,7 +11,7 @@ import FooterBottom from "./components/home/Footer/FooterBottom";
 import Header from "./components/home/Header/Header";
 import HeaderBottom from "./components/home/Header/HeaderBottom";
 import SpecialCase from "./components/SpecialCase/SpecialCase";
-import About from "./pages/About/About";
+import Analytics from "./pages/Analytics/Analytics";
 import SignIn from "./pages/Account/SignIn";
 import SignUp from "./pages/Account/SignUp";
 import Cart from "./pages/Cart/Cart";
@@ -43,7 +43,7 @@ const router = createBrowserRouter(
         {/* ==================== Header Navlink Start here =================== */}
         <Route index element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
-        <Route path="/about" element={<About />}></Route>
+        <Route path="/analytics" element={<Analytics />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/InventoryMgmt" element={<InventoryMgmt />}></Route>
         {/* ==================== Header Navlink End here ===================== */}

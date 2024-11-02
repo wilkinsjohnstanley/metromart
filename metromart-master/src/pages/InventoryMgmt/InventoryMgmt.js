@@ -4,6 +4,8 @@ import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import axios from "axios";
 
 const InventoryMgmt = () => {
+    //for the navigation breadcrumbs
+
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
   useEffect(() => {
