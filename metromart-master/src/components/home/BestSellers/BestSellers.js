@@ -2,7 +2,7 @@ import React from "react";
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
 import {
-  bestSellerOne,
+  metromart_hand_towel,
   bestSellerTwo,
   bestSellerThree,
   bestSellerFour,
@@ -15,8 +15,8 @@ const BestSellers = () => {
       <div className="w-full grid grid-cols-1 md:grid-cols-2 lgl:grid-cols-3 xl:grid-cols-4 gap-10">
         <Product
           _id="1011"
-          img={bestSellerOne}
-          productName="Flower Base"
+          img={metromart_hand_towel}
+          productName="MetroMart Hand Towel"
           price="35.00"
           color="Blank and White"
           badge={true}

@@ -3,9 +3,9 @@ import Heading from "../Products/Heading";
 import Product from "../Products/Product";
 import {
   metromart_t_shirt,
-  spfTwo,
-  spfThree,
-  spfFour,
+  metromart_bag,
+  metromart_hat,
+  metromart_charger,
 } from "../../../assets/images/index";
 
 const SpecialOffers = () => {
@@ -24,8 +24,8 @@ const SpecialOffers = () => {
         />
         <Product
           _id="1102"
-          img={spfTwo}
-          productName="Tea Table"
+          img={metromart_bag}
+          productName="MetroMart Tote Bag"
           price="180.00"
           color="Gray"
           badge={true}
@@ -33,8 +33,8 @@ const SpecialOffers = () => {
         />
         <Product
           _id="1103"
-          img={spfThree}
-          productName="Headphones"
+          img={metromart_hat}
+          productName="MetroMart Hat"
           price="25.00"
           color="Mixed"
           badge={true}
@@ -42,8 +42,8 @@ const SpecialOffers = () => {
         />
         <Product
           _id="1104"
-          img={spfFour}
-          productName="Sun glasses"
+          img={metromart_charger}
+          productName="MetroMart Phone Charger"
           price="220.00"
           color="Black"
           badge={true}
