@@ -42,11 +42,11 @@ useEffect(()=>{
           recognized for celebrating the essence of classic Worldwide cool
           looking style.
           <ul>
-            <li>1. In how many stores does Coke outsell Pepsi?</li>
-            <li>2. What are the 5 stores with the most sales so far this year? </li>
-            <li>3. What are the 20 top-selling products at each store? </li>
-            <li>4. What are the 20 top-selling products in each state?  </li>
-            <li>5. What are the top 3 types of product that customers buy in addition to milk?</li>
+          <li>1. What are the 20 top-selling products at each store? </li>
+          <li>2. What are the 20 top-selling products in each state?  </li>
+          <li>3. What are the 5 stores with the most sales so far this year? </li>
+          <li>4. In how many stores does Coke outsell Pepsi?</li>
+          <li>5. What are the top 3 types of product that customers buy in addition to milk?</li>
 
 
           </ul>

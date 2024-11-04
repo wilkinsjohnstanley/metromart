@@ -8,25 +8,25 @@ const Category = () => {
   const items = [
     {
       _id: 990,
-      title: "New Arrivals",
+      title: "Snacks",
       icons: true,
     },
     {
       _id: 991,
-      title: "Gudgets",
+      title: "Beverages",
     },
     {
       _id: 992,
-      title: "Accessories",
+      title: "Frozen",
       icons: true,
     },
     {
       _id: 993,
-      title: "Electronics",
+      title: "Dairy",
     },
     {
       _id: 994,
-      title: "Others",
+      title: "Bakery",
     },
   ];
   return (

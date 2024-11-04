@@ -3,9 +3,9 @@ import logoLight from "./logoLight.png";
 import bannerImgOne from "./banner/bannerImgOne.png";
 import bannerImgTwo from "./banner/bannerImgTwo.png";
 import bannerImgThree from "./banner/bannerImgThree.png";
-import saleImgOne from "./sale/saleImgOne.webp";
-import saleImgTwo from "./sale/saleImgTwo.webp";
-import saleImgThree from "./sale/saleImgThree.webp";
+import saleImgOne from "./sale/saleImgOne.png";
+import saleImgTwo from "./sale/saleImgTwo.png";
+import saleImgThree from "./sale/saleImgThree.png";
 // ============== Products Start here ====================
 // New Arrivals
 import newArrOne from "./products/newArrival/newArrOne.webp";
@@ -26,7 +26,7 @@ import metromart_hat from "./products/specialOffer/metromart_hat.png";
 import metromart_charger from "./products/specialOffer/metromart_charger.png";
 
 // Year Product
-import productOfTheYear from "./products/productOfTheYear.webp";
+import productOfTheYear from "./products/productOfTheYear.png";
 // ============== Products End here ======================
 import paymentCard from "./payment.png";
 import emptyCart from "../images/emptyCart.png";
