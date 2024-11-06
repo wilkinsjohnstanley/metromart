@@ -6,6 +6,9 @@ import {
   bestSellerTwo,
   bestSellerThree,
   bestSellerFour,
+  metromart_charger,
+  metromart_bag,
+  metromart_t_shirt,
 } from "../../../assets/images/index";
 
 const BestSellers = () => {
@@ -24,8 +27,8 @@ const BestSellers = () => {
         />
         <Product
           _id="1012"
-          img={bestSellerTwo}
-          productName="New Backpack"
+          img={metromart_charger}
+          productName="Metromart Charger"
           price="180.00"
           color="Gray"
           badge={false}
@@ -33,8 +36,8 @@ const BestSellers = () => {
         />
         <Product
           _id="1013"
-          img={bestSellerThree}
-          productName="Household materials"
+          img={metromart_bag}
+          productName="Metromart Tote Bag"
           price="25.00"
           color="Mixed"
           badge={true}
@@ -42,8 +45,8 @@ const BestSellers = () => {
         />
         <Product
           _id="1014"
-          img={bestSellerFour}
-          productName="Travel Bag"
+          img={metromart_t_shirt}
+          productName="MetroMart T-Shirt"
           price="220.00"
           color="Black"
           badge={false}

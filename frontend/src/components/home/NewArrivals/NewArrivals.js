@@ -7,6 +7,11 @@ import {
   newArrTwo,
   newArrThree,
   newArrFour,
+  metromart_hat,
+  metromart_hand_towel,
+  metromart_bag,
+  metromart_t_shirt,
+  metromart_charger,
 } from "../../../assets/images/index";
 import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
@@ -53,8 +58,8 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100001"
-            img={newArrOne}
-            productName="Round Table Clock"
+            img={metromart_hat}
+            productName="MetroMart Hat"
             price="44.00"
             color="Black"
             badge={true}
@@ -64,8 +69,8 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100002"
-            img={newArrTwo}
-            productName="Smart Watch"
+            img={metromart_hand_towel}
+            productName="MetroMart Hand Towel"
             price="250.00"
             color="Black"
             badge={true}
@@ -75,8 +80,8 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100003"
-            img={newArrThree}
-            productName="cloth Basket"
+            img={metromart_bag}
+            productName="MetroMart Tote Bag"
             price="80.00"
             color="Mixed"
             badge={true}
@@ -86,8 +91,8 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100004"
-            img={newArrFour}
-            productName="Funny toys for babies"
+            img={metromart_t_shirt}
+            productName="MetroMart"
             price="60.00"
             color="Mixed"
             badge={false}
@@ -97,8 +102,8 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100005"
-            img={newArrTwo}
-            productName="Funny toys for babies"
+            img={metromart_charger}
+            productName="MetroMart Charger"
             price="60.00"
             color="Mixed"
             badge={false}
