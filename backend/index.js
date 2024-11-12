@@ -26,14 +26,30 @@ app.listen(8800, ()=>{
 app.get("/", (req, res)=>{
     res.json("You did it.")
 })
-//select everything from the products table
-app.get("/products", (req, res)=>{
-    const q = "SELECT*FROM product"
-    db.query(q,(err, data)=>{
-        if(err) return res.json(err)
-            return res.json(data)
-    })
-})
+//Endpoint to get all the products
+// Endpoint to get all products
+// Corrected /product endpoint
+app.get('/product', (req, res) => {
+    db.query('SELECT * FROM product', (err, result) => {
+        if (err) {
+            res.status(500).json({ error: 'Database error' });
+            return;
+        }
+        
+        // Transform the data inside the callback
+        const transformedData = result.map(item => ({
+            id: item.ProductID,
+            name: item.ProductName,
+            size: item.Size,
+            price: parseFloat(item.Price).toFixed(2),
+        }));
+        
+        console.log('Transformed data for frontend:', transformedData);
+        res.json(transformedData);
+    });
+});
+
+
 
 //Inventory Mangement System: Tell me the store, product, and reorder information on items that are low in the inventory.
 app.get("/inventory", (req, res)=>{

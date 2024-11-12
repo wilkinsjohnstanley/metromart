@@ -12,7 +12,7 @@ const Analytics = () => {
     setPrevLocation(location.state.data);
   }, [location]);
 
-//Get the analytics data from the backend. 
+// =================== Get the analytics data from the backend====================
 
 //Top 20 for Each Store. 
 const [top20ByStore, setTop20ByStore] = useState([])

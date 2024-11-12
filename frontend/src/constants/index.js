@@ -30,15 +30,16 @@ export const navBarList = [
     title: "Analytics",
     link: "/analytics",
   },
-  {
-    _id: 1004,
-    title: "Contact",
-    link: "contact",
-  },
+
   {
     _id: 1005,
     title: "Inventory",
     link: "/InventoryMgmt",
+  },
+  {
+    _id: 1004,
+    title: "Contact",
+    link: "contact",
   },
 ];
 // =================== NavBarList End here ======================

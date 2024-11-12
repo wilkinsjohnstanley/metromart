@@ -44,11 +44,11 @@ const InventoryMgmt = () => {
         <table className="table table-bordered">
           <thead>
         <tr>
-          <th scope="col"> Store </th>
-          <th scope="col"> Location </th>
-          <th scope="col"> Product </th>
-          <th scope="col"> Stock Quantity </th>
-          <th scope="col"> Reorder Level </th>
+          <th  style={{ padding: "16px" }}scope="col"> Store </th>
+          <th  style={{ padding: "16px" }}scope="col"> Location </th>
+          <th  style={{ padding: "16px" }}scope="col"> Product </th>
+          <th  style={{ padding: "16px" }}scope="col"> Stock Quantity </th>
+          <th  style={{ padding: "16px" }}scope="col"> Reorder Level </th>
 
         </tr>
         </thead>
@@ -58,11 +58,11 @@ const InventoryMgmt = () => {
             return(
               <tr>
                 <>
-            <td>{item.StoreName}</td>
-            <td>{item.Location}</td>
-            <td>{item.ProductName}</td>
-            <td>{item.StockQuantity}</td>
-            <td>{item.ReorderLevel}</td>
+            <td style={{ padding: "16px" }}>{item.StoreName}</td>
+            <td style={{ padding: "16px" }}>{item.Location}</td>
+            <td style={{ padding: "16px" }}>{item.ProductName}</td>
+            <td style={{ padding: "16px" }}>{item.StockQuantity}</td>
+            <td style={{ padding: "16px" }}>{item.ReorderLevel}</td>
 
             </>
               </tr>
