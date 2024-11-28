@@ -18,7 +18,9 @@ const InventoryMgmt = () => {
    const fetchAllStock = async ()=>{
      try {
        //the result of the inventory SQL query is retrieved. 
-       const res = await axios.get("http://localhost:8800/inventory")
+      //  const res = await axios.get("http://localhost:8800/inventory")
+      const res = await axios.get("http://localhost:8800/StoreInventoryDetails")
+
        console.log(res)
        //get the data from the backend server!!
        setStock(res.data);

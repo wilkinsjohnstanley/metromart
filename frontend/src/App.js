@@ -22,7 +22,8 @@ import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
-
+import Add from "./pages/Add";
+import Update from "./pages/Update";
 const Layout = () => {
   return (
     <div>
@@ -40,6 +41,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Layout />}>
+      <Route path="/add" element={<Add />} />
+      <Route path="/update/:id" element={<Update />} />
         {/* ==================== Header Navlink Start here =================== */}
         <Route index element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>

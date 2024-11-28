@@ -31,7 +31,7 @@ app.get('/product', (req, res) => {
             price: parseFloat(item.Price).toFixed(2),
         }));
         
-        console.log('Transformed data for frontend:', transformedData);
+        //console.log('Transformed data for frontend:', transformedData);
         res.json(transformedData);
     });
 });
@@ -46,18 +46,61 @@ app.get('/product', (req, res) => {
 //         return res.json({ message: "Inventory entry added successfully", data });
 //     });
 // });
-app.post("/inventory", (req, res) =>{
-    const q = "INSERT INTO inventory (StoreID, ProductID, StockQuantity) VALUES (?)"
+//<----------------CRUD for StoreInventoryDetails-------------------------------->
+//Display Store Inventory Details for all stores
+app.get("/StoreInventoryDetails", (req, res)=>{
+    const q = "SELECT * FROM StoreInventoryDetails";
+    db.query(q, (err, data) => {
+        if (err) {
+          console.log(err);
+          return res.json(err);
+        }
+        return res.json(data);
+      });
+    });
+app.post("/StoreInventoryDetails", (req, res) =>{
+    const q = "INSERT INTO StoreInventoryDetails (`StoreName`, `Location`, `ProductName`, `StockQuantity`, `ReorderLevel`) VALUES (?)";
     const values = [
-        req.body.StoreID,
-        req.body.ProductID,
-        req.body.StockQuantity
+        req.body.StoreName,
+        req.body.Location,
+        req.body.ProductName,
+        req.body.StockQuantity,
+        req.body.ReorderLevel
     ];
     db.query(q,[values], (err,data)=>{
         if(err) return res.json(err);
             return res.json(data);
     })
 })
+app.delete("/StoreInventoryDetails/:id", (req, res) => {
+    const detailId = req.params.id;
+    const q = " DELETE FROM StoreInventoryDetails WHERE id = ? ";
+  
+    db.query(q, [detailId], (err, data) => {
+      if (err) return res.send(err);
+      return res.json(data);
+    });
+  });
+  
+  app.put("/StoreInventoryDetails/:id", (req, res) => {
+    const detailId = req.params.id;
+    const q = "UPDATE StoreInventoryDetails SET `StoreName`= ?, `Location`= ?, `ProductName`= ?, `StockQuantity`= ?, `ReorderLevel`= ? WHERE id = ?";
+  
+    const values = [
+        req.body.StoreName,
+        req.body.Location,
+        req.body.ProductName,
+        req.body.StockQuantity,
+        req.body.ReorderLevel
+    ];
+  
+    db.query(q, [...values,bookId], (err, data) => {
+      if (err) return res.send(err);
+      return res.json(data);
+    });
+  });
+
+//<-----------------------------------------------Analytics only----------------------------------------------------------->
 //READ
 //Display Inventory for all stores
 app.get("/inventory", (req, res)=>{
