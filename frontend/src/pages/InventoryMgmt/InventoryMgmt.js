@@ -5,7 +5,6 @@ import axios from "axios";
 
 const InventoryMgmt = () => {
     //for the navigation breadcrumbs
-
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
   useEffect(() => {
@@ -13,13 +12,32 @@ const InventoryMgmt = () => {
   }, [location]);
 
 
-  //Get the inventory from the backend. 
+ //Get the inventory from the backend 
+ const [stock, setStock] = useState([])
+ useEffect(()=>{
+   const fetchAllStock = async ()=>{
+     try {
+       //the result of the inventory SQL query is retrieved. 
+       const res = await axios.get("http://localhost:8800/inventory")
+       console.log(res)
+       //get the data from the backend server!!
+       setStock(res.data);
+     } catch (err) {
+       console.log(err)
+     }
+   }
+   //call the function
+   fetchAllStock()
+ },[])
+ //Add Stock
+
+  //Get the items below reorder level from the backend. 
   const [items, setItems] = useState([])
   useEffect(()=>{
     const fetchAllItems = async ()=>{
       try {
         //the result of the inventory SQL query is retrieved. 
-        const res = await axios.get("http://localhost:8800/inventory")
+        const res = await axios.get("http://localhost:8800/reorder")
         console.log(res)
         //get the data from the backend server!!
         setItems(res.data);
@@ -36,11 +54,48 @@ const InventoryMgmt = () => {
     <div className="max-w-container mx-auto px-4">
       <Breadcrumbs title="Inventory Management System" prevLocation={prevLocation} />
       <div className="pb-10">
+
+        {/* Inventory  */}
+        <h1 className="max-w-[600px] text-base text-lightText mb-2">
+          <span className="text-primeColor font-semibold text-lg">          Inventory
+          </span>{" "}
+        </h1>
+        <table className="table table-bordered">
+          <thead>
+        <tr>
+          <th  style={{ padding: "16px" }}scope="col"> Store </th>
+          <th  style={{ padding: "16px" }}scope="col"> Address </th>
+          <th  style={{ padding: "16px" }}scope="col"> Product </th>
+          <th  style={{ padding: "16px" }}scope="col"> Quantity </th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+          {stock.map(stocks=>{
+            return(
+              <tr>
+                <>
+            <td style={{ padding: "16px" }}>{stocks.StoreName}</td>
+            <td style={{ padding: "16px" }}>{stocks.Location}</td>
+            <td style={{ padding: "16px" }}>{stocks.ProductName}</td>
+            <td style={{ padding: "16px" }}>{stocks.StockQuantity}</td>
+               </>
+              </tr> )
+           
+
+})}
+
+   
+   </tbody>
+        </table>
+
+        {/* Items below reorder level table */}
+
         <h1 className="max-w-[600px] text-base text-lightText mb-2">
           <span className="text-primeColor font-semibold text-lg">          Items below Reorder Level
           </span>{" "}
         </h1>
-        {/* Inventory table! */}
         <table className="table table-bordered">
           <thead>
         <tr>
@@ -64,6 +119,7 @@ const InventoryMgmt = () => {
             <td style={{ padding: "16px" }}>{item.StockQuantity}</td>
             <td style={{ padding: "16px" }}>{item.ReorderLevel}</td>
 
+
             </>
               </tr>
 
@@ -75,11 +131,11 @@ const InventoryMgmt = () => {
    </tbody>
         </table>
 
-        <Link to="/shop">
+        {/* <Link to="/shop">
           <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
             Continue Shopping
           </button>
-        </Link>
+        </Link> */}
 
         
       </div>
