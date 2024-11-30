@@ -17,6 +17,9 @@ The project addresses the challenge of efficiently managing retail operations ac
 - **Programming Language**: JavaScript
 - **IDE**: Visual Studio Code
 - **Database Management System**: MySQL
+- **JavaScript Runtime Environment**: Node.js
+- **Web framework for Node**: Express.js
+- **JavaScript Library**: React.js
 
 ---
 
@@ -26,10 +29,12 @@ The project addresses the challenge of efficiently managing retail operations ac
 
 1. **Install Visual Studio Code**: If not already installed, download Visual Studio Code from [here](https://code.visualstudio.com/).
 2. **Install Node.js**: If not already installed, download Node.js from [here]([https://code.visualstudio.com/](https://nodejs.org/en/download/prebuilt-installer)).
+3. **Create the database**: If not already installed, download MySQL from [here](https://www.mysql.com/downloads/). The database creation SQL commands are located in the database creation.sql file in the main project directory. In the sample queries folder, I have included more commands for the insertion of data. 
 
 ### 3. Open the Project in Visual Studio Code
 1. Open Visual Studio Code.
 2. Go to `File > Open Folder` and select the project folder.
+3. Install dependencies: "npm i" will install dependencies listed in the package.json such as cors, express, mysql, and nodemon.
 
 
 ### 4. Run the Prorgram
