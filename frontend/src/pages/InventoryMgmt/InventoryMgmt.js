@@ -18,8 +18,8 @@ const InventoryMgmt = () => {
    const fetchAllStock = async ()=>{
      try {
        //the result of the inventory SQL query is retrieved. 
-      //  const res = await axios.get("http://localhost:8800/inventory")
-      const res = await axios.get("http://localhost:8800/StoreInventoryDetails")
+       const res = await axios.get("http://localhost:8800/inventory")
+
 
        console.log(res)
        //get the data from the backend server!!
@@ -51,6 +51,17 @@ const InventoryMgmt = () => {
     fetchAllItems()
   },[])
 
+  //Delete function
+  const handleDelete = async(id)=>{
+    try {
+      await axios.delete(`http://localhost:8800/inventory/${id}`)
+
+      window.location.reload() //refresh is normally done with Redux
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
 
   return (
     <div className="max-w-container mx-auto px-4">
@@ -74,7 +85,7 @@ const InventoryMgmt = () => {
         </thead>
 
         <tbody>
-          {stock.map(stocks=>{
+          {stock.map((stocks)=>{
             return(
               <tr>
                 <>
@@ -82,6 +93,9 @@ const InventoryMgmt = () => {
             <td style={{ padding: "16px" }}>{stocks.Location}</td>
             <td style={{ padding: "16px" }}>{stocks.ProductName}</td>
             <td style={{ padding: "16px" }}>{stocks.StockQuantity}</td>
+            <td style={{ padding: "16px" }}><button className="update" ><Link to={`/add/${stocks.id}`}>Update</Link></button></td>
+            <td style={{ padding: "16px" }}><button className="delete" onClick={()=>handleDelete(stocks.id)}>Delete</button></td>
+
                </>
               </tr> )
            

@@ -46,10 +46,10 @@ app.get('/product', (req, res) => {
 //         return res.json({ message: "Inventory entry added successfully", data });
 //     });
 // });
-//<----------------CRUD for StoreInventoryDetails-------------------------------->
+//<----------------CRUD for inventory-------------------------------->
 //Display Store Inventory Details for all stores
-app.get("/StoreInventoryDetails", (req, res)=>{
-    const q = "SELECT * FROM StoreInventoryDetails";
+app.get("/inventory", (req, res)=>{
+    const q = "SELECT s.StoreName, s.Location, p.ProductName, i.StockQuantity, i.ReorderLevel FROM store s JOIN inventory i ON s.StoreID = i.StoreID JOIN product p ON i.ProductID = p.ProductID;";
     db.query(q, (err, data) => {
         if (err) {
           console.log(err);
@@ -58,8 +58,8 @@ app.get("/StoreInventoryDetails", (req, res)=>{
         return res.json(data);
       });
     });
-app.post("/StoreInventoryDetails", (req, res) =>{
-    const q = "INSERT INTO StoreInventoryDetails (`StoreName`, `Location`, `ProductName`, `StockQuantity`, `ReorderLevel`) VALUES (?)";
+app.post("/inventory", (req, res) =>{
+    const q = "INSERT INTO inventory (`StoreName`, `Location`, `ProductName`, `StockQuantity`, `ReorderLevel`) VALUES (?)";
     const values = [
         req.body.StoreName,
         req.body.Location,
@@ -72,9 +72,9 @@ app.post("/StoreInventoryDetails", (req, res) =>{
             return res.json(data);
     })
 })
-app.delete("/StoreInventoryDetails/:id", (req, res) => {
+app.delete("/inventory/:id", (req, res) => {
     const detailId = req.params.id;
-    const q = " DELETE FROM StoreInventoryDetails WHERE id = ? ";
+    const q = " DELETE FROM inventory WHERE id = ? "; 
   
     db.query(q, [detailId], (err, data) => {
       if (err) return res.send(err);
@@ -82,9 +82,9 @@ app.delete("/StoreInventoryDetails/:id", (req, res) => {
     });
   });
   
-  app.put("/StoreInventoryDetails/:id", (req, res) => {
+  app.put("/inventory/:id", (req, res) => {
     const detailId = req.params.id;
-    const q = "UPDATE StoreInventoryDetails SET `StoreName`= ?, `Location`= ?, `ProductName`= ?, `StockQuantity`= ?, `ReorderLevel`= ? WHERE id = ?";
+    const q = "UPDATE inventory SET `StoreName`= ?, `Location`= ?, `ProductName`= ?, `StockQuantity`= ?, `ReorderLevel`= ? WHERE id = ?";
   
     const values = [
         req.body.StoreName,
@@ -94,45 +94,59 @@ app.delete("/StoreInventoryDetails/:id", (req, res) => {
         req.body.ReorderLevel
     ];
   
-    db.query(q, [...values,bookId], (err, data) => {
+    db.query(q, [...values,detailId], (err, data) => {
       if (err) return res.send(err);
       return res.json(data);
     });
   });
 
-//<-----------------------------------------------Analytics only----------------------------------------------------------->
-//READ
-//Display Inventory for all stores
-app.get("/inventory", (req, res)=>{
-    const q = "SELECT s.StoreName, s.Location, p.ProductName, i.StockQuantity, i.ReorderLevel FROM store s JOIN inventory i ON s.StoreID = i.StoreID JOIN product p ON i.ProductID = p.ProductID;";
-    db.query(q,(err, data)=>{
-        if(err) return res.json(err)
-            return res.json(data)
-    })
-})
+//<-----------------------------------------------????????----------------------------------------------------------->
+//CREATE
+// app.post('/inventory', (req, res) => {
+//     const { StoreID, ProductID, StockQuantity, ReorderLevel } = req.body;
+//     const query = `INSERT INTO inventory (StoreID, ProductID, StockQuantity, ReorderLevel) VALUES (?, ?, ?, ?)`;
+    
+//     db.query(query, [StoreID, ProductID, StockQuantity, ReorderLevel], (err, result) => {
+//         if (err) {
+//             res.status(500).json({ error: 'Error adding inventory item.' });
+//         } else {
+//             res.status(201).json({ message: 'Inventory item added successfully!', itemID: result.insertId });
+//         }
+//     });
+// });
+
+// //READ
+// //Display Inventory for all stores
+// app.get("/inventory", (req, res)=>{
+//     const q = "SELECT s.StoreName, s.Location, p.ProductName, i.StockQuantity, i.ReorderLevel FROM store s JOIN inventory i ON s.StoreID = i.StoreID JOIN product p ON i.ProductID = p.ProductID;";
+//     db.query(q,(err, data)=>{
+//         if(err) return res.json(err)
+//             return res.json(data)
+//     })
+// })
 
 
-//UPDATE
-app.put("/inventory/:InventoryID", (req, res) => {
-    const { StockQuantity, ReorderLevel } = req.body;
-    const { InventoryID } = req.params;
-    const q = "UPDATE inventory SET StockQuantity = ?, ReorderLevel = ? WHERE InventoryID = ?";
+// //UPDATE
+// app.put("/inventory/:InventoryID", (req, res) => {
+//     const { StockQuantity, ReorderLevel } = req.body;
+//     const { InventoryID } = req.params;
+//     const q = "UPDATE inventory SET StockQuantity = ?, ReorderLevel = ? WHERE InventoryID = ?";
     
-    db.query(q, [StockQuantity, ReorderLevel, InventoryID], (err, data) => {
-        if (err) return res.json(err);
-        return res.json({ message: "Inventory entry updated successfully", data });
-    });
-});
-//DELETE
-app.delete("/inventory/:InventoryID", (req, res) => {
-    const { InventoryID } = req.params;
-    const q = "DELETE FROM inventory WHERE InventoryID = ?";
+//     db.query(q, [StockQuantity, ReorderLevel, InventoryID], (err, data) => {
+//         if (err) return res.json(err);
+//         return res.json({ message: "Inventory entry updated successfully", data });
+//     });
+// });
+// //DELETE
+// app.delete("/inventory/:InventoryID", (req, res) => {
+//     const { InventoryID } = req.params;
+//     const q = "DELETE FROM inventory WHERE InventoryID = ?";
     
-    db.query(q, [InventoryID], (err, data) => {
-        if (err) return res.json(err);
-        return res.json({ message: "Inventory entry deleted successfully", data });
-    });
-});
+//     db.query(q, [InventoryID], (err, data) => {
+//         if (err) return res.json(err);
+//         return res.json({ message: "Inventory entry deleted successfully", data });
+//     });
+// });
 
 
 /*<---------- END OF CRUD for Inventory Table ----------------------------------------------------------> */
@@ -189,154 +203,54 @@ app.get("/top3WithMilk", (req, res)=>{
             return res.json(data)
     })
 })
-// // CREATE - Add new inventory item
-// app.post("/inventory", (req, res) => {
-//     const { StoreName, Location, ProductName, StockQuantity } = req.body;
-    
-//     // First, get StoreID and ProductID based on names
-//     const findIdsQuery = `
-//         SELECT s.StoreID, p.ProductID 
-//         FROM store s, product p 
-//         WHERE s.StoreName = ? 
-//         AND p.ProductName = ?
-//     `;
-    
-//     db.query(findIdsQuery, [StoreName, ProductName], (err, idResults) => {
-//         if (err) {
-//             return res.status(500).json({ error: "Database error", details: err });
-//         }
-        
-//         if (idResults.length === 0) {
-//             return res.status(404).json({ error: "Store or Product not found" });
-//         }
-        
-//         const { StoreID, ProductID } = idResults[0];
-        
-//         // Now insert into inventory
-//         const insertQuery = `
-//             INSERT INTO inventory (StoreID, ProductID, StockQuantity) 
-//             VALUES (?, ?, ?)
-//         `;
-        
-//         db.query(insertQuery, [StoreID, ProductID, StockQuantity], (err, result) => {
-//             if (err) {
-//                 return res.status(500).json({ error: "Database error", details: err });
-//             }
-//             res.status(201).json({ message: "Inventory item added successfully", id: result.insertId });
-//         });
-//     });
-// });
 
-// // UPDATE - Update inventory item
-// app.put("/inventory/:id", (req, res) => {
-//     const inventoryId = req.params.id;
-//     const { StoreName, Location, ProductName, StockQuantity } = req.body;
-    
-//     // First, get StoreID and ProductID based on names
-//     const findIdsQuery = `
-//         SELECT s.StoreID, p.ProductID 
-//         FROM store s, product p 
-//         WHERE s.StoreName = ? 
-//         AND p.ProductName = ?
-//     `;
-    
-//     db.query(findIdsQuery, [StoreName, ProductName], (err, idResults) => {
-//         if (err) {
-//             return res.status(500).json({ error: "Database error", details: err });
-//         }
-        
-//         if (idResults.length === 0) {
-//             return res.status(404).json({ error: "Store or Product not found" });
-//         }
-        
-//         const { StoreID, ProductID } = idResults[0];
-        
-//         // Now update inventory
-//         const updateQuery = `
-//             UPDATE inventory 
-//             SET StoreID = ?, ProductID = ?, StockQuantity = ? 
-//             WHERE InventoryID = ?
-//         `;
-        
-//         db.query(updateQuery, [StoreID, ProductID, StockQuantity, inventoryId], (err, result) => {
-//             if (err) {
-//                 return res.status(500).json({ error: "Database error", details: err });
-//             }
-            
-//             if (result.affectedRows === 0) {
-//                 return res.status(404).json({ error: "Inventory item not found" });
-//             }
-            
-//             res.json({ message: "Inventory updated successfully" });
-//         });
-//     });
-// });
 
-// // DELETE - Remove inventory item
-// app.delete("/inventory/:id", (req, res) => {
+// // RESTOCK - Increase inventory for items below reorder level
+// app.post("/restock/:id", (req, res) => {
 //     const inventoryId = req.params.id;
     
-//     const query = "DELETE FROM inventory WHERE InventoryID = ?";
+//     // First get the current inventory details
+//     const getInventoryQuery = `
+//         SELECT StockQuantity, ReorderLevel 
+//         FROM inventory 
+//         WHERE InventoryID = ?
+//     `;
     
-//     db.query(query, [inventoryId], (err, result) => {
+//     db.query(getInventoryQuery, [inventoryId], (err, inventoryResult) => {
 //         if (err) {
 //             return res.status(500).json({ error: "Database error", details: err });
 //         }
         
-//         if (result.affectedRows === 0) {
+//         if (inventoryResult.length === 0) {
 //             return res.status(404).json({ error: "Inventory item not found" });
 //         }
         
-//         res.json({ message: "Inventory item deleted successfully" });
+//         const { StockQuantity, ReorderLevel } = inventoryResult[0];
+        
+//         // Calculate restock amount (bring stock up to 150% of reorder level)
+//         const targetQuantity = Math.ceil(ReorderLevel * 1.5);
+//         const newQuantity = Math.max(targetQuantity, StockQuantity);
+        
+//         // Update the inventory with new quantity
+//         const updateQuery = `
+//             UPDATE inventory 
+//             SET StockQuantity = ? 
+//             WHERE InventoryID = ?
+//         `;
+        
+//         db.query(updateQuery, [newQuantity, inventoryId], (err, result) => {
+//             if (err) {
+//                 return res.status(500).json({ error: "Database error", details: err });
+//             }
+            
+//             res.json({ 
+//                 message: "Inventory restocked successfully",
+//                 oldQuantity: StockQuantity,
+//                 newQuantity: newQuantity
+//             });
+//         });
 //     });
 // });
-
-// RESTOCK - Increase inventory for items below reorder level
-app.post("/restock/:id", (req, res) => {
-    const inventoryId = req.params.id;
-    
-    // First get the current inventory details
-    const getInventoryQuery = `
-        SELECT StockQuantity, ReorderLevel 
-        FROM inventory 
-        WHERE InventoryID = ?
-    `;
-    
-    db.query(getInventoryQuery, [inventoryId], (err, inventoryResult) => {
-        if (err) {
-            return res.status(500).json({ error: "Database error", details: err });
-        }
-        
-        if (inventoryResult.length === 0) {
-            return res.status(404).json({ error: "Inventory item not found" });
-        }
-        
-        const { StockQuantity, ReorderLevel } = inventoryResult[0];
-        
-        // Calculate restock amount (bring stock up to 150% of reorder level)
-        const targetQuantity = Math.ceil(ReorderLevel * 1.5);
-        const newQuantity = Math.max(targetQuantity, StockQuantity);
-        
-        // Update the inventory with new quantity
-        const updateQuery = `
-            UPDATE inventory 
-            SET StockQuantity = ? 
-            WHERE InventoryID = ?
-        `;
-        
-        db.query(updateQuery, [newQuantity, inventoryId], (err, result) => {
-            if (err) {
-                return res.status(500).json({ error: "Database error", details: err });
-            }
-            
-            res.json({ 
-                message: "Inventory restocked successfully",
-                oldQuantity: StockQuantity,
-                newQuantity: newQuantity
-            });
-        });
-    });
-});
 
 app.listen(8800, () => {
     console.log("Backend server is running on port 8800")

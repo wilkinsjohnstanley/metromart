@@ -28,8 +28,8 @@ console.log(item)
 const handleClick = async (e) => {
   e.preventDefault();
   try {
-    await axios.post("http://localhost:8800/StoreInventoryDetails", item);
-    navigate("/");
+    await axios.post("http://localhost:8800/inventory", item);
+    navigate("/InventoryMgmt");
   } catch (err) {
     console.log(err);
     setError(true)
