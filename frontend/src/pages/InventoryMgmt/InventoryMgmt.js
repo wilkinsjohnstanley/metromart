@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import axios from "axios";
 
@@ -50,17 +50,32 @@ const InventoryMgmt = () => {
     //call the function
     fetchAllItems()
   },[])
+//Reorder Items
+    const handleReorder = async (e, ProductID) => {
+      e.preventDefault();
+  
+      try {
+        await axios.put(`http://localhost:8800/reorder/${ProductID}`);
+        // navigate("/");
+      } catch (err) {
+        console.log(err);
+        // setError(true);
+      }
+    };
+
+
+
 
   //Delete function
-  const handleDelete = async(id)=>{
-    try {
-      await axios.delete(`http://localhost:8800/inventory/${id}`)
+  // const handleDelete = async(id)=>{
+  //   try {
+  //     await axios.delete(`http://localhost:8800/inventory/${id}`)
 
-      window.location.reload() //refresh is normally done with Redux
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  //     window.location.reload() //refresh is normally done with Redux
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
 
   return (
@@ -93,8 +108,8 @@ const InventoryMgmt = () => {
             <td style={{ padding: "16px" }}>{stocks.Location}</td>
             <td style={{ padding: "16px" }}>{stocks.ProductName}</td>
             <td style={{ padding: "16px" }}>{stocks.StockQuantity}</td>
-            <td style={{ padding: "16px" }}><button className="update" ><Link to={`/add/${stocks.id}`}>Update</Link></button></td>
-            <td style={{ padding: "16px" }}><button className="delete" onClick={()=>handleDelete(stocks.id)}>Delete</button></td>
+            {/* <td style={{ padding: "16px" }}><button className="update" ><Link to={`/add/${stocks.id}`}>Update</Link></button></td>
+            <td style={{ padding: "16px" }}><button className="delete" onClick={()=>handleDelete(stocks.id)}>Delete</button></td> */}
 
                </>
               </tr> )
@@ -115,11 +130,14 @@ const InventoryMgmt = () => {
         <table className="table table-bordered">
           <thead>
         <tr>
+          <th  style={{ padding: "16px" }}scope="col"> ProductID </th>
           <th  style={{ padding: "16px" }}scope="col"> Store </th>
           <th  style={{ padding: "16px" }}scope="col"> Location </th>
           <th  style={{ padding: "16px" }}scope="col"> Product </th>
           <th  style={{ padding: "16px" }}scope="col"> Stock Quantity </th>
           <th  style={{ padding: "16px" }}scope="col"> Reorder Level </th>
+          <th  style={{ padding: "16px" }}scope="col"> Button</th>
+
 
         </tr>
         </thead>
@@ -129,11 +147,13 @@ const InventoryMgmt = () => {
             return(
               <tr>
                 <>
+            <td style={{ padding: "16px" }}>{item.ProductID}</td>
             <td style={{ padding: "16px" }}>{item.StoreName}</td>
             <td style={{ padding: "16px" }}>{item.Location}</td>
             <td style={{ padding: "16px" }}>{item.ProductName}</td>
             <td style={{ padding: "16px" }}>{item.StockQuantity}</td>
             <td style={{ padding: "16px" }}>{item.ReorderLevel}</td>
+            <td style={{ padding: "16px" }}><button className="reorder" onClick={()=>handleReorder(item.ProductID)}>Reorder</button></td>
 
 
             </>

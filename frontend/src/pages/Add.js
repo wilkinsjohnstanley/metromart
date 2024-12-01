@@ -10,7 +10,7 @@ const [item, setItem] = useState({
   Location: "",
   ProductName: "",
   StockQuantity: null,
-  ReorderLevel:null
+  ReorderLevel:null,
 });
 const [error,setError] = useState(false)
 

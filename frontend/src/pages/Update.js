@@ -1,17 +1,37 @@
-import React from 'react'
+import axios from "axios";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Update = () => {
-  // return (
-  //   <div className='form'>
-  //       <h1>Add New Item</h1>
-  //       <input type='text' placeholder='StoreName'></input>
-  //       <input type='text' placeholder='Location'></input>
-  //       <input type='text' placeholder='ProductName'></input>
-  //       <input type='text' placeholder='StockQuantity'></input>
-  //       <input type='text' placeholder='ReorderLevel'></input>
 
-  //       </div>
-  // )
+    // const [item, setItem] = useState({
+    //   title: "",
+    //   desc: "",
+    //   price: null,
+    //   cover: "",
+    // });
+    // const [error,setError] = useState(false)
+  
+    // const location = useLocation();
+    // const navigate = useNavigate();
+  
+    // const bookId = location.pathname.split("/")[2];
+  
+    // const handleChange = (e) => {
+    //   setBook((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    // };
+  
+    // const handleClick = async (e) => {
+    //   e.preventDefault();
+  
+    //   try {
+    //     await axios.put(`http://localhost:8800/books/${bookId}`, book);
+    //     navigate("/");
+    //   } catch (err) {
+    //     console.log(err);
+    //     setError(true);
+    //   }
+    // };
   return (
     <div className="max-w-container mx-auto px-4">
       
@@ -29,6 +49,7 @@ const Update = () => {
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
                 type="text"
                 placeholder="Enter the name of the store here"
+                // onChange={handleChange}
               />
          
             </div>
@@ -40,6 +61,7 @@ const Update = () => {
                
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
                 placeholder="Enter the location"
+                // onChange={handleChange}
               />
               
             </div>
@@ -50,7 +72,8 @@ const Update = () => {
               <input
                
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
-                placeholder="Enter the name of the produt"
+                placeholder="Enter the name of the product"
+                // onChange={handleChange}
               />
               
             </div>
@@ -62,6 +85,7 @@ const Update = () => {
                
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
                 placeholder="Enter the quantity of the stock"
+                // onChange={handleChange}
               />
               
             </div>
@@ -76,15 +100,16 @@ const Update = () => {
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor resize-none"
                 type="text"
                 placeholder="Enter level at which it becomes necessary to reorder"
+                // onChange={handleChange}
               ></textarea>
               
               
             </div>
             
-            <button
+            <button //onClick={handleClick}
               className="w-44 bg-primeColor text-gray-200 h-10 font-titleFont text-base tracking-wide font-semibold hover:bg-black hover:text-white duration-200"
             >
-              Add
+              Update
             </button>
           </div>
         </form>
