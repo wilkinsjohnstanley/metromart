@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import axios from "axios";
-
 const InventoryMgmt = () => {
+
+
+  const navigate = useNavigate(); // Initialize the navigate function
+  const [error, setError] = useState(false); // Initialize state for errors
     //for the navigation breadcrumbs
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
@@ -11,6 +14,7 @@ const InventoryMgmt = () => {
     setPrevLocation(location.state.data);
   }, [location]);
 
+{/*------------------------------ All Inventory Logic ---------------------------*/}
 
  //Get the inventory from the backend 
  const [stock, setStock] = useState([])
@@ -32,9 +36,10 @@ const InventoryMgmt = () => {
    fetchAllStock()
  },[])
  //Add Stock
+{/*------------------------------ Logic for Reorder ---------------------------*/}
 
-  //Get the items below reorder level from the backend. 
-  const [items, setItems] = useState([])
+{/*------------------------------ Display items below reorder ---------------------------*/}
+const [items, setItems] = useState([])
   useEffect(()=>{
     const fetchAllItems = async ()=>{
       try {
@@ -50,32 +55,22 @@ const InventoryMgmt = () => {
     //call the function
     fetchAllItems()
   },[])
-//Reorder Items
+
+  
+{/*------------------------------Reorder Button Logic ---------------------------*/}
+
     const handleReorder = async (e, ProductID) => {
       e.preventDefault();
   
       try {
         await axios.put(`http://localhost:8800/reorder/${ProductID}`);
-        // navigate("/");
-      } catch (err) {
+        window.location.reload(); // Refresh the current page
+       } catch (err) {
         console.log(err);
-        // setError(true);
+        setError(true);
       }
     };
 
-
-
-
-  //Delete function
-  // const handleDelete = async(id)=>{
-  //   try {
-  //     await axios.delete(`http://localhost:8800/inventory/${id}`)
-
-  //     window.location.reload() //refresh is normally done with Redux
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
 
 
   return (
@@ -121,7 +116,7 @@ const InventoryMgmt = () => {
    </tbody>
         </table>
 
-        {/* Items below reorder level table */}
+{/*------------------------------ Items below reorder level table ---------------------------*/}
 
         <h1 className="max-w-[600px] text-base text-lightText mb-2">
           <span className="text-primeColor font-semibold text-lg">          Items below Reorder Level
@@ -143,8 +138,9 @@ const InventoryMgmt = () => {
         </thead>
 
         <tbody>
-          {items.map(item=>{
+          {items.map((item)=>{
             return(
+          //    <div key={item.ProductID}>
               <tr>
                 <>
             <td style={{ padding: "16px" }}>{item.ProductID}</td>
@@ -153,12 +149,12 @@ const InventoryMgmt = () => {
             <td style={{ padding: "16px" }}>{item.ProductName}</td>
             <td style={{ padding: "16px" }}>{item.StockQuantity}</td>
             <td style={{ padding: "16px" }}>{item.ReorderLevel}</td>
-            <td style={{ padding: "16px" }}><button className="reorder" onClick={()=>handleReorder(item.ProductID)}>Reorder</button></td>
+            <td style={{ padding: "16px" }}><button onClick={(e)=>handleReorder(e, item.ProductID)}>Reorder</button></td>
 
 
             </>
               </tr>
-
+            //  </div>
             )
            
 
