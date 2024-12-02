@@ -15,20 +15,35 @@ const db = mysql.createConnection({
 //Allows us to send any json file using a client
 app.use(express.json())
 
-// Existing routes remain the same...This can be used to display products.
+//<----------------For the shop page. Display the items-------------------------------->
+// app.get('/product', (req, res) => {
+//     db.query('SELECT * FROM product', (err, result) => {
+//         if (err) {
+//             res.status(500).json({ error: 'Database error' });
+//             return;
+//         }
+//         res.json(result); // Send the query result as the response
+//     });
+// });
 app.get('/product', (req, res) => {
     db.query('SELECT * FROM product', (err, result) => {
         if (err) {
-            res.status(500).json({ error: 'Database error' });
-            return;
+            return res.status(500).json({ error: 'Database error' });
         }
+        // Map database columns to camelCase
+        const mappedResult = result.map(product => ({
+            id: product.ProductID,
+            name: product.ProductName,
+            size: product.Size,
+            price: product.Price
+        }));
+        res.json(mappedResult);
     });
 });
-
 //<----------------Inventory table-------------------------------->
 
 app.get("/inventory", (req, res)=>{
-    const q = "SELECT s.StoreName, s.Location, p.ProductName, i.StockQuantity, i.ReorderLevel FROM store s JOIN inventory i ON s.StoreID = i.StoreID JOIN product p ON i.ProductID = p.ProductID;";
+    const q = "SELECT p.ProductID,s.StoreName, s.Location, p.ProductName, i.StockQuantity, i.ReorderLevel FROM store s JOIN inventory i ON s.StoreID = i.StoreID JOIN product p ON i.ProductID = p.ProductID;";
     db.query(q, (err, data) => {
         if (err) {
           console.log(err);
@@ -50,13 +65,16 @@ app.get("/reorder", (req, res)=>{
 //Reorder items!
 app.put("/reorder/:ProductID", (req, res) => {
     const productId = req.params.ProductID;
-    const q = "UPDATE inventory SET `StockQuantity`= ? WHERE ProductID = ?";
+    const q = "UPDATE inventory SET StockQuantity = 1000 WHERE ProductID = ?";
+
   
-    const values = [
-      req.body.StockQuantity
-    ];
+    // const values = [
+    //   req.body.StockQuantity
+    // ];
   
-    db.query(q, [...values,productId], (err, data) => {
+    // db.query(q, [...values,productId], (err, data) => {
+    db.query(q, [productId], (err, data) => {
+
       if (err) return res.send(err);
       return res.json(data);
     });

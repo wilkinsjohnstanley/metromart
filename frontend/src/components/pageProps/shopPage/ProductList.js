@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/metroSlice";
-import { metromart_hand_towel } from '../../../assets/images';
+//import { metromart_hand_towel } from '../../../assets/images';
 const ProductList = () => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
@@ -47,13 +47,14 @@ const ProductList = () => {
         <div className="w-full pb-20">
             <h2 className="text-2xl font-bold mb-4">Products</h2>
             <div className="w-full grid grid-cols-1 md:grid-cols-2 lgl:grid-cols-3 xl:grid-cols-4 gap-10">
+
                 {products.length > 0 ? (
                     products.map(product => (
                         <div
                             key={product.id}
                             className="border border-gray-200 rounded-lg p-4 shadow hover:shadow-lg transition-shadow"
                         >
-                            <div>                            <img img={metromart_hand_towel}></img>
+                            <div>                            
                             </div>
                             <h3 className="text-lg font-semibold">{product.name}</h3>
                             <p className="text-gray-700">Size: {product.size}</p>
