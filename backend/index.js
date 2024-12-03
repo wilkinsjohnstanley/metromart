@@ -9,7 +9,7 @@ app.use(cors())
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "notmypassword",
     database: "metromart"
 })
 //Allows us to send any json file using a client
