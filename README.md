@@ -7,7 +7,8 @@ The project addresses the challenge of efficiently managing retail operations ac
 
 ### Main Files
 - **index.js**: Handles requests from the client to the server.
-- **InventoryMgmt.js**: Displays the status of inventory including items below reorder level. 
+- **InventoryMgmt.js**: Displays the status of inventory including items below reorder level.
+- **Add.js**: A Form to Add new items to the Inventory
 - **Analytics.js**: Displays the results of queries requested by the professor to demonstrate SQL knowledge, such as "What are the 20 top-selling products at each store?"
 - **Shop.js**: Displays all the products in the inventory on a webpage. Users can add products to their cart.
 - **Cart.js**: Items users added to their cart appear here along with price. 
