@@ -43,7 +43,7 @@ app.get('/product', (req, res) => {
 //<----------------Inventory table-------------------------------->
 
 app.get("/inventory", (req, res)=>{
-    const q = "SELECT p.ProductID,s.StoreName, s.Location, p.ProductName, i.StockQuantity, i.ReorderLevel FROM store s JOIN inventory i ON s.StoreID = i.StoreID JOIN product p ON i.ProductID = p.ProductID;";
+    const q = "SELECT p.ProductID, s.StoreID ,s.StoreName, s.Location, p.ProductName, i.StockQuantity, i.ReorderLevel FROM store s JOIN inventory i ON s.StoreID = i.StoreID JOIN product p ON i.ProductID = p.ProductID;";
     db.query(q, (err, data) => {
         if (err) {
           console.log(err);
@@ -52,7 +52,23 @@ app.get("/inventory", (req, res)=>{
         return res.json(data);
       });
     });
-
+//Add
+app.post("/inventory", (req, res) => {
+    const q = "INSERT INTO inventory (`StoreID`, `ProductID`, `StockQuantity`, `ReorderLevel`, `Price`) VALUES (?)";
+  
+    const values = [
+      req.body.StoreID,
+      req.body.ProductID,
+      req.body.StockQuantity,
+      req.body.ReorderLevel,
+      req.body.Price
+    ];
+  
+    db.query(q, [values], (err, data) => {
+      if (err) return res.send(err);
+      return res.json(data);
+    });
+  });
 /*<---------- Below Reorder Level Table ----------------------------------------------------------> */
 //Below Reorder Level: Tell me the store, product, and reorder information on items that are low in the inventory.
 app.get("/reorder", (req, res)=>{
@@ -103,7 +119,7 @@ app.get("/top5stores", (req, res)=>{
 })
 //In how many stores does Coke outsell Pepsi?
 app.get("/cokeVsPepsi", (req, res)=>{
-    const q = "SELECT s.StoreID,       SUM(CASE WHEN p.ProductName LIKE '%Coke%' THEN mp.Quantity ELSE 0 END) AS CokeSales,       SUM(CASE WHEN p.ProductName LIKE '%Pepsi%' THEN mp.Quantity ELSE 0 END) AS PepsiSales FROM Store s JOIN MarketBasket mb ON s.StoreID = mb.StoreID JOIN MarketBasketProduct mp ON mb.BasketID = mp.BasketID JOIN Product p ON mp.ProductID = p.ProductID WHERE p.ProductName LIKE '%Coke%' OR p.ProductName LIKE '%Pepsi%' GROUP BY s.StoreID;"
+    const q = "SELECT s.StoreID, s.StoreName,       SUM(CASE WHEN p.ProductName LIKE '%Coke%' THEN mp.Quantity ELSE 0 END) AS CokeSales,       SUM(CASE WHEN p.ProductName LIKE '%Pepsi%' THEN mp.Quantity ELSE 0 END) AS PepsiSales FROM Store s JOIN MarketBasket mb ON s.StoreID = mb.StoreID JOIN MarketBasketProduct mp ON mb.BasketID = mp.BasketID JOIN Product p ON mp.ProductID = p.ProductID WHERE p.ProductName LIKE '%Coke%' OR p.ProductName LIKE '%Pepsi%' GROUP BY s.StoreID;"
     db.query(q,(err, data)=>{
         if(err) return res.json(err)
             return res.json(data)

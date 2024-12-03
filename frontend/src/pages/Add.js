@@ -6,11 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 const Add = () => {
 // Function to hold the state, and update if necessary
 const [item, setItem] = useState({
-  StoreName: "",
-  Location: "",
-  ProductName: "",
+  StoreID: null,
+  ProductID: null,
   StockQuantity: null,
-  ReorderLevel:null,
+  ReorderLevel: null,
+  Price:null,
 });
 const [error,setError] = useState(false)
 
@@ -29,8 +29,8 @@ const handleClick = async (e) => {
   e.preventDefault();
   try {
     await axios.post("http://localhost:8800/inventory", item);
-    navigate("/InventoryMgmt");
- //window.location.reload(); // Refresh the current page
+  //  navigate("/InventoryMgmt");
+ window.location.reload(); // Refresh the current page
 
   } catch (err) {
     console.log(err);
@@ -48,55 +48,44 @@ const handleClick = async (e) => {
           <div className="w-[500px] h-auto py-6 flex flex-col gap-6">
           <div>
               <p className="text-base font-titleFont font-semibold px-2">
-                Store Name
+                StoreID
               </p>
               <input
                
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
-                type="text"
-                placeholder="Enter the name of the store here"
+                 type="number"
+                placeholder="Enter the StoreID here"
                 onChange={handleChange}
 
-                name='StoreName'
+                name='StoreID'
               />
          
             </div>
             <div>
               <p className="text-base font-titleFont font-semibold px-2">
-                Location
+                ProductID
               </p>
               <input
                
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
-                placeholder="Enter the location"
+                type="number"
+                placeholder="Enter the ProductID"
                 onChange={handleChange}
 
-                name='Location'
+                name='ProductID'
               />
               
             </div>
             <div>
               <p className="text-base font-titleFont font-semibold px-2">
-                Product Name
+                StockQuantity
               </p>
               <input
                
+                
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
-                placeholder="Enter the name of the product"
-                onChange={handleChange}
-
-                name='ProductName'
-              />
-              
-            </div>
-            <div>
-              <p className="text-base font-titleFont font-semibold px-2">
-                Stock Quantity
-              </p>
-              <input
-               
-                className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
-                placeholder="Enter the quantity of the stock"
+                 type="number"
+                placeholder="Enter the quantity"
                 onChange={handleChange}
 
                 name='StockQuantity'
@@ -105,17 +94,32 @@ const handleClick = async (e) => {
             </div>
             <div>
               <p className="text-base font-titleFont font-semibold px-2">
-                Reorder Level
+                ReorderLevel
+              </p>
+              <input
+               
+                className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
+                 type="number"
+                placeholder="Enter the reorder level of the stock"
+                onChange={handleChange}
+
+                name='ReorderLevel'
+              />
+              
+            </div>
+            <div>
+              <p className="text-base font-titleFont font-semibold px-2">
+                Price
               </p>
               <textarea
                 
                 cols="30"
                 rows="3"
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor resize-none"
-                type="text"
-                placeholder="Enter level at which it becomes necessary to reorder"
+                 type="number"
+                placeholder="Enter the price"
                 onChange={handleChange}
-                name='ReorderLevel'
+                name='Price'
               ></textarea>
               
               

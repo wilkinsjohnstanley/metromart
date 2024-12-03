@@ -86,8 +86,11 @@ const [items, setItems] = useState([])
         <table className="table table-bordered">
           <thead>
         <tr>
+        <th  style={{ padding: "16px" }}scope="col"> StoreID </th>
           <th  style={{ padding: "16px" }}scope="col"> Store </th>
           <th  style={{ padding: "16px" }}scope="col"> Address </th>
+          <th  style={{ padding: "16px" }}scope="col"> ProductID </th>
+
           <th  style={{ padding: "16px" }}scope="col"> Product </th>
           <th  style={{ padding: "16px" }}scope="col"> Quantity </th>
 
@@ -99,8 +102,12 @@ const [items, setItems] = useState([])
             return(
               <tr>
                 <>
+            <td style={{ padding: "16px" }}>{stocks.StoreID}</td>
+
             <td style={{ padding: "16px" }}>{stocks.StoreName}</td>
             <td style={{ padding: "16px" }}>{stocks.Location}</td>
+            <td style={{ padding: "16px" }}>{stocks.ProductID}</td>
+
             <td style={{ padding: "16px" }}>{stocks.ProductName}</td>
             <td style={{ padding: "16px" }}>{stocks.StockQuantity}</td>
             {/* <td style={{ padding: "16px" }}><button className="update" ><Link to={`/add/${stocks.id}`}>Update</Link></button></td>

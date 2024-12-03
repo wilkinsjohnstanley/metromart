@@ -215,7 +215,8 @@ useEffect(()=>{
  <table className="table table-bordered">
           <thead>
         <tr>
-          <th style={{ padding: "16px" }} scope="col"> Store ID </th>
+          <th style={{ padding: "16px" }} scope="col"> StoreID </th>
+          <th style={{ padding: "16px" }} scope="col"> Store Name </th>
           <th style={{ padding: "16px" }} scope="col"> Coke Sales </th>
           <th style={{ padding: "16px" }} scope="col"> Pepsi Sales </th>
 
@@ -229,6 +230,7 @@ useEffect(()=>{
               <tr>
                 <>
             <td style={{ padding: "16px" }} >{item.StoreID}</td>
+            <td style={{ padding: "16px" }} >{item.StoreName}</td>
             <td style={{ padding: "16px" }} >{item.CokeSales}</td>
             <td style={{ padding: "16px" }} >{item.PepsiSales}</td>
 
