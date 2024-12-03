@@ -4,6 +4,7 @@
 ## Project Overview
 The project addresses the challenge of efficiently managing retail operations across multiple stores with varying product availability, pricing, and stock levels. 
 
+
 ### Main Files
 - **index.js**: Handles requests from the client to the server.
 - **InventoryMgmt.js**: Displays the status of inventory including items below reorder level. 
