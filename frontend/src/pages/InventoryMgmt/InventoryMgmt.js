@@ -35,7 +35,7 @@ const InventoryMgmt = () => {
    //call the function
    fetchAllStock()
  },[])
- //Add Stock
+ {/*-------------------------------------------------------------------------------*/}
 {/*------------------------------ Logic for Reorder ---------------------------*/}
 
 {/*------------------------------ Display items below reorder ---------------------------*/}
@@ -59,11 +59,11 @@ const [items, setItems] = useState([])
   
 {/*------------------------------Reorder Button Logic ---------------------------*/}
 
-    const handleReorder = async (e, ProductID) => {
+    const handleReorder = async (e, ProductID, StoreID) => {
       e.preventDefault();
   
       try {
-        await axios.put(`http://localhost:8800/reorder/${ProductID}`);
+        await axios.put(`http://localhost:8800/reorder/${ProductID}/${StoreID}`);
         window.location.reload(); // Refresh the current page
        } catch (err) {
         console.log(err);
@@ -71,7 +71,7 @@ const [items, setItems] = useState([])
       }
     };
 
-
+{/*-------------------------------------------------------------------------------*/}
 
   return (
     <div className="max-w-container mx-auto px-4">
@@ -149,7 +149,7 @@ const [items, setItems] = useState([])
             <td style={{ padding: "16px" }}>{item.ProductName}</td>
             <td style={{ padding: "16px" }}>{item.StockQuantity}</td>
             <td style={{ padding: "16px" }}>{item.ReorderLevel}</td>
-            <td style={{ padding: "16px" }}><button onClick={(e)=>handleReorder(e, item.ProductID)}>Reorder</button></td>
+            <td style={{ padding: "16px" }}><button onClick={(e)=>handleReorder(e, item.ProductID, item.StoreID)}>Reorder</button></td>
 
 
             </>

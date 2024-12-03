@@ -1,0 +1,1 @@
+UPDATE producttype Set ParentTypeID=4 WHERE ProductTypeID=6

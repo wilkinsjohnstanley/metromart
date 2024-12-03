@@ -30,6 +30,8 @@ const handleClick = async (e) => {
   try {
     await axios.post("http://localhost:8800/inventory", item);
     navigate("/InventoryMgmt");
+ //window.location.reload(); // Refresh the current page
+
   } catch (err) {
     console.log(err);
     setError(true)
